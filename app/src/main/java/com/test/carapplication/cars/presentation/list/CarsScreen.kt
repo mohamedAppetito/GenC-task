@@ -89,6 +89,6 @@ fun CarItem(car: Car, onItemClick: (Int) -> Unit) {
 @Composable
 fun DefaultPreviewScreen() {
     CarApplicationTheme {
-        // GymsScreen()
+
     }
 }

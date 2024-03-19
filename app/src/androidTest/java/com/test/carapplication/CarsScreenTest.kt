@@ -11,6 +11,7 @@ import com.test.carapplication.DummyCarList.getDummyList
 import com.test.carapplication.cars.presentation.SemanticsDescription
 import com.test.carapplication.cars.presentation.list.CarsScreen
 import com.test.carapplication.cars.presentation.list.CarsScreenState
+import com.test.carapplication.cars.presentation.list.SearchState
 import com.test.carapplication.ui.theme.CarApplicationTheme
 import org.junit.Rule
 import org.junit.Test
@@ -28,52 +29,62 @@ class CarsScreenTest {
             CarApplicationTheme {
                 CarsScreen(
                     state = CarsScreenState(cars = emptyList(), isLoading = true),
-                    onItemClick = {},
+                    onItemClick = {}, event = {}, searchState = SearchState()
                 )
             }
         }
-        testRule.onNodeWithContentDescription(SemanticsDescription.CARS_LIST_LOADING).assertIsDisplayed()
+        testRule.onNodeWithContentDescription(SemanticsDescription.CARS_LIST_LOADING)
+            .assertIsDisplayed()
     }
 
     @Test
     fun loadingContentState_isActive() {
-        val dummyList= getDummyList()
+        val dummyList = getDummyList()
 
         testRule.setContent {
             CarApplicationTheme {
                 CarsScreen(
-                    state = CarsScreenState(cars = dummyList, isLoading = false,error = null),
-                    onItemClick = {})
+                    state = CarsScreenState(cars = dummyList, isLoading = false, error = null),
+                    onItemClick = {}, event = {}, searchState = SearchState()
+                )
             }
         }
         testRule.onNodeWithText(dummyList[0].id.toString()).assertIsDisplayed()
-        testRule.onNodeWithContentDescription(SemanticsDescription.CARS_LIST_LOADING).assertDoesNotExist()
+        testRule.onNodeWithContentDescription(SemanticsDescription.CARS_LIST_LOADING)
+            .assertDoesNotExist()
     }
 
     @Test
     fun loadingError_isActive() {
-        val errorText="failed to load data"
+        val errorText = "failed to load data"
         testRule.setContent {
             CarApplicationTheme {
                 CarsScreen(
-                    state = CarsScreenState(cars = emptyList(), isLoading = false,error = errorText),
-                    onItemClick = {},)
+                    state = CarsScreenState(
+                        cars = emptyList(),
+                        isLoading = false,
+                        error = errorText
+                    ),
+                    onItemClick = {}, event = {}, searchState = SearchState()
+                )
             }
         }
         testRule.onNodeWithText(errorText).assertIsDisplayed()
-        testRule.onNodeWithContentDescription(SemanticsDescription.CARS_LIST_LOADING).assertDoesNotExist()
+        testRule.onNodeWithContentDescription(SemanticsDescription.CARS_LIST_LOADING)
+            .assertDoesNotExist()
     }
 
     @Test
     fun onItemClicked_idIsPassedCorrectly() {
-        val dummyList= DummyCarList.getDummyList()
+        val dummyList = DummyCarList.getDummyList()
         testRule.setContent {
             CarApplicationTheme {
                 CarsScreen(
                     state = CarsScreenState(cars = dummyList, isLoading = false),
-                    onItemClick = {id ->
-                         assert( dummyList[0].id == id )
-                    },)
+                    onItemClick = { id ->
+                        assert(dummyList[0].id == id)
+                    }, event = {}, searchState = SearchState()
+                )
             }
         }
         testRule.onNodeWithText(dummyList[0].color.toString()).performClick()

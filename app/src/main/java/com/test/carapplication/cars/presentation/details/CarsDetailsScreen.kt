@@ -11,9 +11,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.test.carapplication.cars.presentation.component.CarDetails
 
 @Composable
-fun GymsDetailsScreen() {
+fun CarsDetailsScreen() {
 
-    val viewModel: GymDetailViewModel  = hiltViewModel()
+    val viewModel: CarDetailViewModel  = hiltViewModel()
     val item = viewModel.state.value
 
     item?.let {

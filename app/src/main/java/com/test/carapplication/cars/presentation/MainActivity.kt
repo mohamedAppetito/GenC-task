@@ -16,7 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
-import com.test.carapplication.cars.presentation.details.GymsDetailsScreen
+import com.test.carapplication.cars.presentation.details.CarsDetailsScreen
 import com.test.carapplication.cars.presentation.list.CarsScreen
 import com.test.carapplication.cars.presentation.list.CarsViewModel
 import com.test.carapplication.ui.theme.CarApplicationTheme
@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GymsAroundApp()
+                    CarsAroundApp()
                 }
             }
         }
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun GymsAroundApp() {
+private fun CarsAroundApp() {
 
     val navController = rememberNavController()
 
@@ -66,7 +66,7 @@ private fun GymsAroundApp() {
         )
         {
             val carId = it.arguments?.getInt("car_id")
-            GymsDetailsScreen()
+            CarsDetailsScreen()
         }
     }
 }
