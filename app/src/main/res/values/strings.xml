@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Car Application</string>
+    <string name="brand">"Brand : "</string>
+    <string name="model">"Model : "</string>
+    <string name="unit">"Unit Price : "</string>
+    <string name="color">"Color : "</string>
+    <string name="plat">"Plate Number : "</string>
+</resources>
